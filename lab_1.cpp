@@ -62,6 +62,7 @@ int main()
     var1 = var1 - var2; // var1 -> var2 only ...
     cout << "Variables are after changing: " << var1 << " and " << var2 << endl;
 
+    cout << "Task 5." << endl;
     int years;
     cout << "Input how many years: ";
     cin >> years;
