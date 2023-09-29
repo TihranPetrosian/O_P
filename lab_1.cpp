@@ -69,11 +69,11 @@ int main()
     if (years < 136)
     {
         unsigned int seconds = years * 365 * 24 * 60 * 60;
-        cout << seconds << " seconds in " << years << " years" << endl;
+        cout << seconds << " seconds in " << years << " years";
     }
     else
     {
         unsigned long seconds = years * 365 * 24 * 60 * 60;
-        cout << seconds << " seconds in " << years << " years" << endl;
+        cout << seconds << " seconds in " << years << " years" ;
     };
 }
