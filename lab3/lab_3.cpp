@@ -4,7 +4,7 @@
 int main() {
 
     //Task 1
-    double x, y; // координати точки
+    // double x, y; // координати точки
 
     // while (1) {
     //     printf("\n \033[1;32mВведіть координату x >");
@@ -23,7 +23,7 @@ int main() {
 
     //Task 2
     double a, b, c;
-    printf("Введіть коефіцієнт a: ");
+    printf("\033[1;32mВведіть коефіцієнт a: ");
     scanf("%lf", &a);
     printf("Введіть коефіцієнт b: ");
     scanf("%lf", &b);
@@ -33,16 +33,16 @@ int main() {
     double discriminant = b * b - 4 * a * c;
 
     if (a == 0) {
-        printf("Це не є квадратним рівнянням. Рівняння лінійне.\n");
+        printf("\033[1;31mЦе не є квадратним рівнянням. Рівняння лінійне.\n");
     } else if (discriminant > 0) {
         double root1 = (-b + sqrt(discriminant)) / (2 * a);
         double root2 = (-b - sqrt(discriminant)) / (2 * a);
-        printf("Рівняння має два корені: x1 = %lf та x2 = %lf\n", root1, root2);
+        printf("\033[1;34mРівняння має два корені: x1 = %lf та x2 = %lf\n", root1, root2);
     } else if (discriminant == 0) {
         double root = -b / (2 * a);
-        printf("Рівняння має один корінь: x = %lf\n", root);
+        printf("\033[1;34mРівняння має один корінь: x = %lf\n", root);
     } else {
-        printf("Рівняння не має дійсних коренів.\n");
+        printf("\033[1;31mРівняння не має дійсних коренів.\n");
     }
 
 }
