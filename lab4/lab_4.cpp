@@ -11,7 +11,7 @@ void printGraphic()
 
   for (n = 0; n < 5; n++)
   {
-    printf("|   x   |      у     |\n");
+    printf("\x1B[34m|   x   |      у     |\n");
     printf("|-------|------------|\n");
     for (x = 0; x < 4; x += 0.25)
     {
@@ -51,17 +51,17 @@ void guessNumber(){
 
   while (true)
   {
-        cout << "Give me some number" << endl;
+        cout << "\x1B[34mGive me some number" << endl;
     cin >> guessNum;
     triesCounter++;
 
     if (guessNum < randNumber)
     {
-      cout << "No, your number is smaller" << endl;
+      cout << "\x1B[31mNo, your number is smaller" << endl;
     }
     else if (guessNum > randNumber)
     {
-      cout << "No, your number is bigger" << endl;
+      cout << "\x1B[31mNo, your number is bigger" << endl;
     }
 
     if (guessNum == randNumber)
@@ -73,21 +73,17 @@ void guessNumber(){
   }
 }
 
-int generateRandomNumber(int min, int max) {
-    return rand() % (max - min + 1) + min;
-};
-
 void multiplicationTable(){
 srand(static_cast<unsigned>(time(0))); 
 
     int score = 0;
     int userAnswer;
 
-    std::cout << "Checking knowledge of the multiplication table" << std::endl;
+    std::cout << "\x1B[34mChecking knowledge of the multiplication table" << std::endl;
 
     for (int i = 0; i < 10; i++) {
-        int num1 = generateRandomNumber(2, 9);
-        int num2 = generateRandomNumber(2, 9);
+        int num1 = GetRandomNumber(2, 9);
+        int num2 = GetRandomNumber(2, 9);
         int correctAnswer = num1 * num2;
 
         std::cout << num1 << " x " << num2 << " = ?" << std::endl;
@@ -97,7 +93,7 @@ srand(static_cast<unsigned>(time(0)));
             std::cout << "Correct!" << std::endl;
             score++;
         } else {
-            std::cout << "Incorrect. The right answer is: " << correctAnswer << std::endl;
+            std::cout << "\x1B[31mIncorrect. The right answer is: " << correctAnswer << std::endl;
         }
     }
 
@@ -116,7 +112,7 @@ srand(static_cast<unsigned>(time(0)));
 };
 
   void numberAnalysis(){
-std::cout << "Give me a number: ";
+std::cout << "\x1B[34mGive me a number: ";
     std::string input;
     std::cin >> input;
 
@@ -131,16 +127,19 @@ std::cout << "Give me a number: ";
 
     if (!validInput) {
         std::cout << "Number is uncorrect." << std::endl;
+        return;
     }
 
     int number = std::stoi(input);
 
     if (number < 0) {
         std::cout << "Number is negative." << std::endl;
+        return;
     }
 
     if (input[0] == '0' || input.back() == '0') {
         std::cout << "Number starts or ends with 0." << std::endl;
+        return;
     }
 
     int sum = 0;
@@ -166,7 +165,7 @@ void startMenu(){
 
   do
   {
-    cout << "1. Task1. Print graphic." << endl;
+    cout << "\x1B[32m1. Task1. Print graphic." << endl;
     cout << "2. Task2. Guess number." << endl;
     cout << "3. Task3. Multiplication table." << endl;
     cout << "4. Task4. Number Analysis and Transformation." << endl;
@@ -204,12 +203,6 @@ void startMenu(){
   } while (menuItem != 0);
   
 }
-
-
-
-
-
-
 
 int main()
 {
