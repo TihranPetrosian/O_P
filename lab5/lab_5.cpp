@@ -217,7 +217,7 @@ void startMenu(){
 
   do
   {
-    cout << "\x1B[32m1. Task1. Ararray Check." << endl;
+    cout << "\x1B[32m\n1. Task1. Ararray Check." << endl;
     cout << "2. Task2. Plane." << endl;
     cout << "3. Task3. Array Transform." << endl;
     cout << "0.Exit." << endl;

@@ -27,9 +27,9 @@ int main(void)
     printf("|----------------|-------|-----------|-------------|\n");
 
     /* виведення рядків фактичних даних */
-    printf("| %-14s | %-5c | %-9.1f | %-11.1hd |\n", name1, teamCode1, score1, place1);
-    printf("| %-14s | %-5c | %-9.2f | %-11.1hd |\n", name2, teamCode2, score2, place2);
-    printf("| %-14s | %-5c | %-9.1f | %-11.1hd |\n", name3, teamCode3, score3, place3);
+    printf("| %14s | %-5c | %-9.1f | %11.1hd |\n", name1, teamCode1, score1, place1);
+    printf("| %14s | %-5c | %-9.2f | %11.1hd |\n", name2, teamCode2, score2, place2);
+    printf("| %14s | %-5c | %-9.1f | %11.1hd |\n", name3, teamCode3, score3, place3);
 
     /* виведення приміток */
     printf("|--------------------------------------------------|\n");
