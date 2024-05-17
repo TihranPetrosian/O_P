@@ -87,22 +87,21 @@ void PlayerModel::operator()(const std::string& newName, int newScore, int newPl
 }
 
 void dump(const std::vector<PlayerModel>& players) {
+    std::ofstream file("players.txt", std::ios::binary | std::ios::app);
 
-    std::ofstream file("players.txt", std::ios::binary);
-
-        if (file.is_open()) {
-            for (const auto& player : players) {
-                file << player.getName() << " " << player.getScore() << " " << player.getPlace() << std::endl;
-            }
-            file.close();
-            std::cout << "Vector saved to file." << std::endl;
-        } else {
-            std::cerr << "Unable to open file." << std::endl;
+    if (file.is_open()) {
+        for (const auto& player : players) {
+            file.write(reinterpret_cast<const char*>(&player), sizeof(PlayerModel));
         }
+        file.close();
+        std::cout << "Vector saved to file." << std::endl;
+    } else {
+        std::cerr << "Unable to open file." << std::endl;
+    }
 }
 
 void dumpTxt(const std::vector<PlayerModel>& players) {
-    std::ofstream file("players.txt");
+    std::ofstream file("players.txt", std::ios::app);
 
     if (file.is_open()) {
         for (const auto& player : players) {
@@ -115,14 +114,14 @@ void dumpTxt(const std::vector<PlayerModel>& players) {
     }
 }
 
-void loadFromFile() {
+void loadFromFile(std::vector<PlayerModel> &players) {
     std::ifstream file("players.txt", std::ios::binary);
 
     if (file.is_open()) {
-        std::string name;
-        int score, place;
-        while (file >> name >> score >> place) {
-            std::cout << "Name: " << name << ", Score: " << score << ", Place: " << place << std::endl;
+        players.clear();
+        PlayerModel player;
+        while (file.read(reinterpret_cast<char*>(&player), sizeof(PlayerModel))) {
+            players.push_back(player);
         }
         file.close();
         std::cout << "File loaded successfully." << std::endl;
@@ -131,7 +130,25 @@ void loadFromFile() {
     }
 }
 
-void loadByIndex(const std::vector<PlayerModel> &players, int index) {
+void loadFromFileTxt(std::vector<PlayerModel> &players) {
+    std::ifstream file("players.txt");
+
+    if (file.is_open()) {
+        players.clear();
+        std::string name;
+        int score, place;
+        while (file >> name >> score >> place) {
+            PlayerModel player(name, score, place);
+            players.push_back(player);
+        }
+        file.close();
+        std::cout << "File loaded successfully." << std::endl;
+    } else {
+        std::cerr << "Unable to open file." << std::endl;
+    }
+}
+
+void loadByIndex(std::vector<PlayerModel> &players, int index) {
 
     std::ifstream file("players.txt", std::ios::binary);
 
@@ -152,9 +169,11 @@ void loadByIndex(const std::vector<PlayerModel> &players, int index) {
     file.close();
 
     std::cout << "Player loaded: " << name << " " << score << " " << place << std::endl;
+    PlayerModel newPlayer(name, score, place);
+    players.push_back(newPlayer);
 }
 
-void loadByIndexTxt(const std::vector<PlayerModel> &players, int index) {
+void loadByIndexTxt( std::vector<PlayerModel> &players, int index) {
     std::ifstream file("players.txt");
 
     if (!file.is_open()) {
@@ -174,14 +193,16 @@ void loadByIndexTxt(const std::vector<PlayerModel> &players, int index) {
     file.close();
 
     std::cout << "Player loaded: " << name << " " << score << " " << place << std::endl;
+    PlayerModel newPlayer(name, score, place);
+    players.push_back(newPlayer);
 }
 
-void dumpByIndex(const std::vector<PlayerModel> &players, int index) {
+void dumpByIndex(std::vector<PlayerModel> &players, int index) {
 
-    std::ofstream file("players.txt", std::ios::binary);
+    std::ofstream file("players.txt", std::ios::binary | std::ios::app);
 
     if (file.is_open()) {
-        file << players[index].getName() << " " << players[index].getScore() << " " << players[index].getPlace() << std::endl;
+        file.write(reinterpret_cast<const char*>(&players[index]), sizeof(PlayerModel));
         file.close();
         std::cout << "Player saved" << std::endl;
     } else {
@@ -190,7 +211,7 @@ void dumpByIndex(const std::vector<PlayerModel> &players, int index) {
 }
 
 void dumpByIndexTxt(const std::vector<PlayerModel> &players, int index) {
-    std::ofstream file("players.txt");
+    std::ofstream file("players.txt", std::ios::app);
 
     if (file.is_open()) {
         file << players[index].getName() << " " << players[index].getScore() << " " << players[index].getPlace() << std::endl;

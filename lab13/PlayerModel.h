@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 
-#define SAVE_TYPE BINARY
+//#define SAVE_TYPE_BINARY
 
 class PlayerModel {
 public:
@@ -40,14 +40,18 @@ std::ostream& operator<<(std::ostream& out, const PlayerModel& player);
 std::istream& operator>>(std::istream& in, PlayerModel& player);
 
 void dump(const std::vector<PlayerModel>& players);
-void loadFromFile();
-void dumpByIndex(const std::vector<PlayerModel>& players, int index);
-void loadByIndex(const std::vector<PlayerModel>& players, int index);
-void loadByIndexTxt(const std::vector<PlayerModel> &players, int index);
+void loadFromFile(std::vector<PlayerModel> &players);
+void dumpByIndex( std::vector<PlayerModel>& players, int index);
+void loadByIndex( std::vector<PlayerModel>& players, int index);
+void loadByIndexTxt( std::vector<PlayerModel> &players, int index);
 void dumpTxt(const std::vector<PlayerModel>& players);
 void dumpByIndexTxt(const std::vector<PlayerModel> &players, int index);
-
+void loadFromFileTxt(std::vector<PlayerModel> &players);
 
 void menu();
 
 #endif // PLAYERMODEL_H
+
+//Petro
+//Shishkov
+//Shavikin

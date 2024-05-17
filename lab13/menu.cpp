@@ -184,7 +184,11 @@ void menu() {
                 std::cout << "All players are saved.\n";
                 break;
             case 5:
-                loadFromFile();
+#ifdef SAVE_TYPE_BINARY
+                loadFromFile(players);
+#else
+                loadFromFileTxt(players);
+#endif
                 std::cout << "All players are loaded.\n";
 
                 break;
@@ -202,8 +206,11 @@ void menu() {
             case 7:
                 std::cout << "Enter player`s number to load:\n";
                 std::cin >> index;
-
+#ifdef SAVE_TYPE_BINARY
                 loadByIndex(players, index - 1);
+#else
+                loadByIndexTxt(players, index - 1);
+#endif
                 break;
             default:
                 std::cout << "Invalid choice! Please enter a number from 1 to 4.\n";
